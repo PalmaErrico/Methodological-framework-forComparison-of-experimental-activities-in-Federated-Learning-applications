@@ -1,0 +1,242 @@
+<?xml version="1.0"?>
+
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:/C:/Users/Eric/Desktop/Exchanger/template.xsd">
+ <header>
+ <!-- Questa sezione include metadati generici  -->
+    <title>FL EMNIST</title>
+    <description>Viene creato uno schema XML che definisce un'architettura
+    	 stratificata per rappresentare in modo coerente gli aspetti
+    	  fondamentali dell'esperimento e dei dati utilizzati.
+    </description>
+    <id> 53a6e840-8469-4c91-8a82-4597a3b3154f</id>
+    <date>05/04/2024</date>
+    <version>uno</version>
+    <authors>
+          <author>Palma Errico</author>
+    </authors>
+    <url>https://colab.research.google.com/
+    	drive/1KPNtSDJoSRRcwYoLxDv_iAfhhMAyNkU4?usp=sharing</url>
+ 
+<body>
+	<!-- Questa sezione include metadati del progetto -->
+  <datas>		
+    <data id ="1">
+    <!-- Questa sezione include informazioni sul dataset EMNIST utilizzato -->
+	<description>  Il dataset EMNIST (Extended MNIST) è un'estensione del dataset MNIST e ne rappresenta una versione federata, 
+		progettato nell'ambito del riconoscimento delle cifre e caratteri scritti a mano, adattato per allenare e testare modelli 
+		di machine learning.Nell'ambito del progetto verrà utilizzata una sottoparte di EMNIST chiamata Only_Digits che includere 
+		solo esempi che appartengono alle classi di cifre.
+      </description>
+      <datasource>
+            <dataset name="EMNIST_Digits">
+                  <group name="training set">
+                      <url>https://rds.westernsydney.edu.au/Institutes/MARCS/BENS/EMNIST/emnist-gzip.zip</url>
+                      <data_size> 255.28 MB</data_size>
+                  </group>
+                  <group name="test set">
+                      <url>https://rds.westernsydney.edu.au/Institutes/MARCS/BENS/EMNIST/emnist-gzip.zip</url>
+                      <data_size>30.54 MB </data_size>
+                 </group>
+                <records>382705</records>
+                <data_format> gzip </data_format>
+                <metadata>
+                    <parameter name="label_column">number</parameter>
+                    <parameter name="label_row">user</parameter>
+                    <parameter name="width"> 28 px</parameter>
+                    <parameter name="height"> 28 px</parameter>
+                    <parameter name="pixel_organization"> row wise </parameter>
+                    <parameter name="pixel_range"> 255 </parameter>
+                    <parameter name="label_value"> da 0 a 9 </parameter>
+                    <parameter name="classes">10</parameter>
+                </metadata>
+          </dataset>
+      </datasource>
+ 	  <metadata>
+              <!-- Questa sezione include una documentazione del dataset  fornita da vari siti-->
+              <documentation id = "1">
+              <description>EMNIST mira a supportare la ricerca nel campo della classificazione delle immagini, 
+              	fornendo un dataset più ampio e diversificato che è facilmente integrabile con le tecnologie esistenti. 
+               </description>
+              <link> https://arxiv.org/abs/1702.05373v1 </link>
+              <authors>
+                  <author>Gregory Cohen</author>
+                  <author>Saeed Afshar</author>
+                  <author>Jonathan Tapson</author> 
+                   <author>Andre van Schaik</author>  
+              </authors>
+              <year>2017</year>
+        </documentation>
+        <documentation id = "2">
+            <description>Il sito offre dettagli sul dataset EMNIST all'interno della libreria TensorFlow_Datasets di TensorFlow. </description>
+            <link> https://www.tensorflow.org/datasets/catalog/emnist?hl=it </link>
+            <source_code>https://github.com/tensorflow/datasets/blob/master/tensorflow_datasets/image_classification/mnist.py</source_code>
+            <version_database>3.0.1</version_database>
+            <download_size>562.22MB</download_size>
+            <train_set_size>341.873 immagini </train_set_size>
+            <test_set_size>40.832 immagini </test_set_size>
+        </documentation>
+        </metadata>
+    </data>	
+   </datas>
+ 
+
+    <applications>
+    	 <!-- Questa sezione include riferimenti agli algoritmi utilizzati -->
+        <application id="1">
+        	<!-- modello centralizzato -->
+            <title>centralized learning</title>
+            <model>CNN</model>
+            <codebase>https://github.com/aski97/federated-learning-clients-server-simulation/tree/main/examples/mnist/centralized_learning</codebase>
+            <description>Il link fornito conduce a una repository su GitHub che contiene il codice implementato per l'approccio centralizzato del dataset EMNIST,
+            	 nel quale è stata utilizzata la LeNet-5,un'architettura di rete neurale convoluzionale (CNN) sviluppata da Yann LeCun.
+            </description>
+            <license> Apache-2.0 </license>
+            <author>V.Belardo</author>
+        </application>
+        
+        <application id="2">
+        	  <!-- modello federato -->
+              <title>federated learning</title>
+              <model>fedAvg</model>
+              <fl_type>personal</fl_type>
+	          <codebase>https://github.com/aski97/federated-learning-clients-server-simulation/tree/main/examples/mnist</codebase>
+	          <description> Il link fornito conduce a una repository su GitHub che contiene il codice implementato per l'approccio
+	          	 federato del dataset EMNIST. In questa repository, è progettata un'architettura client/server per simulare un addestramento federato, 
+	          	 coinvolgendo nodi reali.I client e il server sono implementati in Python e comunicano tramite socket utilizzando il protocollo di trasporto TCP.
+	         </description>
+	         <license> Apache-2.0 </license>
+	         <author>V.Belardo</author>
+        </application>
+        <application id="3">
+        	  <!-- modello federato -->
+              <title>federated learning</title>
+              <model>fedMiddleAvg</model>
+              <fl_type>personal</fl_type>
+	          <codebase>https://github.com/aski97/federated-learning-clients-server-simulation/tree/main/examples/mnist</codebase>
+	          <description> Il link fornito conduce a una repository su GitHub che contiene il codice implementato per l'approccio
+	          	 federato del dataset EMNIST. In questa repository, è progettata un'architettura client/server per simulare un addestramento federato, 
+	          	 coinvolgendo nodi reali.I client e il server sono implementati in Python e comunicano tramite socket utilizzando il protocollo di trasporto TCP.
+	         </description>
+	         <license> Apache-2.0 </license>
+	         <author>V.Belardo</author>
+        </application>
+    </applications>
+
+
+
+    <executions>
+        <!-- Questa sezione include informazioni suoi parametri utilizzati per l'esecuzioni delle singole applicazioni precedentemente descritte -->
+         <execution id="1">
+         	<data>1</data>
+            <application>1</application>
+            <deployment environment="host">  
+	        	<parameter type="desktop_application">  PyCharm </parameter>
+	            <parameter type="operation_system"> Linux </parameter>
+	            <parameter type="name_system"> LAPTOP-PKUA4UTD</parameter>
+	            <parameter type="release"> 5.15.146.1-microsoft-standard-WSL2 </parameter>
+	            <parameter type="version"> #1 SMP Thu Jan 11 04:09:03 UTC 2024 </parameter>
+                <parameter type="architecture"> x86_64 </parameter>
+                <parameter type="processor"> AMD Ryzen 7 5700U </parameter>
+                <parameter type="ram"> 16 GB </parameter>
+                <parameter type="python_version">3.10.12 </parameter>
+            </deployment>
+            <configuration_model>
+                <parameter name="train">89.3%</parameter>
+                <parameter name="test">10.7%</parameter>
+                <parameter name="learning_rate">0.002</parameter>
+                <parameter name="optimizer"> Adam </parameter>
+                <parameter name="loss">crossentropy </parameter>
+                <parameter name="metrics"> 'accuracy' </parameter>
+                <parameter name="batch_size">32 </parameter>
+                <parameter name="epochs">40 </parameter>
+            </configuration_model>
+        </execution>
+        <execution id="2">
+        	<data>1</data>
+            <application>2</application>
+             <deployment environment="host">  
+	        	<parameter type="desktop_application">  PyCharm </parameter>
+	            <parameter type="operation_system"> Linux </parameter>
+	            <parameter type="name_system"> LAPTOP-PKUA4UTD</parameter>
+	            <parameter type="release"> 5.15.146.1-microsoft-standard-WSL2 </parameter>
+	            <parameter type="version"> #1 SMP Thu Jan 11 04:09:03 UTC 2024 </parameter>
+                <parameter type="architecture"> x86_64 </parameter>
+                <parameter type="processor"> AMD Ryzen 7 5700U </parameter>
+                <parameter type="ram"> 16 GB </parameter>
+                <parameter type="python_version">3.10.12 </parameter>
+            </deployment>
+            <configuration_model>
+                <parameter name="train">89.3%</parameter>
+                <parameter name="test">10.7%</parameter>
+                <parameter name="learning_rate">0.002</parameter>
+                <parameter name="optimizer"> Adam </parameter>
+                <parameter name="loss"> crossentropy </parameter>
+                <parameter name="metrics"> 'accuracy' </parameter>
+                <parameter name="batch_size"> 32 </parameter>
+                <parameter name="number_of_epochs_for_each_client">40 </parameter>
+                <parameter name="number_of_clients"> 10 </parameter>
+                <parameter name="number_of_round"> 64 </parameter>
+            </configuration_model>
+        </execution>
+        <execution id="3">
+        	<data>2</data>
+            <application>3</application>
+             <deployment environment="host">  
+	        	<parameter type="desktop_application">  PyCharm </parameter>
+	            <parameter type="operation_system"> Linux </parameter>
+	            <parameter type="name_system"> LAPTOP-PKUA4UTD</parameter>
+	            <parameter type="release"> 5.15.146.1-microsoft-standard-WSL2 </parameter>
+	            <parameter type="version"> #1 SMP Thu Jan 11 04:09:03 UTC 2024 </parameter>
+                <parameter type="architecture"> x86_64 </parameter>
+                <parameter type="processor"> AMD Ryzen 7 5700U </parameter>
+                <parameter type="ram"> 16 GB </parameter>
+                <parameter type="python_version">3.10.12 </parameter>
+            </deployment>
+            <configuration_model>
+                <parameter name="train">89.3%</parameter>
+                <parameter name="test">10.7%</parameter>
+                <parameter name="learning_rate">0.002</parameter>
+                <parameter name="optimizer"> Adam </parameter>
+                <parameter name="loss"> crossentropy </parameter>
+                <parameter name="metrics"> 'accuracy' </parameter>
+                <parameter name="batch_size"> 32 </parameter>
+                <parameter name="number_of_epochs_for_each_client">40 </parameter>
+                <parameter name="number_of_clients"> 10 </parameter>
+                <parameter name="number_of_round"> 64 </parameter>
+            </configuration_model>
+        </execution>
+    </executions>
+
+    <evaluations>
+          <!-- Questa sezione include informazioni sui risultati di ogni singola esecuzione -->
+          <evaluation id="1">
+              <execution>1</execution>
+              <kpis>   <!--Key Performance Indicators -->
+                  <kpi type="accuracy" unit="perc"> 96 </kpi>
+                  <kpi type="loss" unit="perc"> 12 </kpi>
+                  <kpi type="execution_time" unit="sec"> 27.23 </kpi>
+                  <kpi type="instruction_count"> 37386389 </kpi>
+                  <kpi type="ram_usage" unit="GB"> 3.94 </kpi>
+              </kpis>
+          </evaluation>
+          <evaluation id="2">
+              <execution>2</execution>
+              <kpis>
+                  <kpi type="accuracy" unit="perc"> 96 </kpi>
+                  <kpi type="loss" unit="perc"> 15 </kpi>
+                  <kpi type="average_training_time" unit="sec"> 648 </kpi>
+                  <kpi type="average_instruction_count"> 268157048 </kpi>
+                  <kpi type="average_ram_usage" unit="GB"> 0.66 </kpi>
+              </kpis>
+          </evaluation>
+
+		  <evaluation id="3">
+              <execution>3</execution>
+              <kpis>
+                  <kpi type="accuracy" unit="perc"> 88 </kpi>
+                  <kpi type="loss" unit="perc"> 33 </kpi>
+              </kpis>
+          </evaluation>
+    </evaluations>
+</body>
+ </document>
