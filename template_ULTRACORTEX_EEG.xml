@@ -1,0 +1,189 @@
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:/C:/Users/Eric/Desktop/Exchanger/template.xsd">
+ <header>
+ <!-- Questa sezione include metadati generici  -->
+    <title>FL ULTRACORTEX</title>
+    <description>Viene creato uno schema XML che definisce un'architettura stratificata per rappresentare in modo coerente gli aspetti fondamentali dell'esperimento e dei dati utilizzati.</description>
+    <id> 8d12888a-f6d2-4ddc-bd0a-2cd4b97619f0</id>
+    <date>20/07/2024</date>
+    <version>0.1</version>
+    <authors>
+          <author>Palma Errico</author>
+    </authors>
+    <url>https://colab.research.google.com/drive/1KPNtSDJoSRRcwYoLxDv_iAfhhMAyNkU4?usp=sharing</url>
+  </header>
+<body>
+	<!-- Questa sezione include metadati del progetto -->
+  <datas>		
+    <data id ="1">
+    <!-- Questa sezione include informazioni sul dataset utilizzato -->
+	<description> Il dataset Ultracortex EEG 2024 è stato creato con l'Ultracortex Mark IV EEG Headset su sei soggetti in due sessioni separate,raccogliendo dati relativi all'immaginazione motoria della mano destra, della mano sinistra e alla condizione di controllo, in cui non si verifica alcuna immaginazione.
+      </description>
+      <datasource>
+            <dataset name="Ultracortex_input">
+                  <group name="training set">
+                      <url>https://github.com/aski97/Ultracortex-EEG-2024-Dataset/blob/main/preprocessed_data/0/x_test.npy</url>
+                      <data_size> 47.70 MB</data_size>
+                  </group>
+                  <group name="test set">
+                      <url>https://github.com/aski97/Ultracortex-EEG-2024-Dataset/blob/main/preprocessed_data/0/x_train.npy</url>
+                      <data_size>12.27 MB </data_size>
+                 </group>
+                <records>382705</records>
+                <data_format> gzip </data_format>
+                <metadata>
+                    <parameter name="label_column">number</parameter>
+                    <parameter name="label_row">user</parameter>
+                    <parameter name="label_column_value"> da 0 a 1 </parameter>
+                    <parameter name="label_row_value"> da user0 a user5 </parameter>
+                    <parameter name="classes">6</parameter>
+                </metadata>
+          </dataset>
+           <dataset name="Ultracortex_label">
+                  <group name="training set">
+                      <url>https://github.com/aski97/Ultracortex-EEG-2024-Dataset/blob/main/preprocessed_data/0/y_train.npy</url>
+                      <data_size> 8.91 KB</data_size>
+                  </group>
+                  <group name="test set">
+                     <url>https://github.com/aski97/Ultracortex-EEG-2024-Dataset/blob/main/preprocessed_data/0/y_test.npy</url>
+                      <data_size> 2912 Bytes </data_size>
+                 </group>
+                <records>1078</records>
+                <data_format> npy </data_format>
+                <metadata>
+                    <parameter name="label_column">number</parameter>
+                    <parameter name="label_row">user</parameter>
+                    <parameter name="label_column_value"> da 0 a 1 </parameter>
+                    <parameter name="label_row_value"> da user0 a user5 </parameter>
+                    <parameter name="classes">6</parameter>
+                </metadata>
+          </dataset>
+      </datasource>
+ 	  <metadata>
+              <!-- Questa sezione include una documentazione del dataset fornita dal web-->
+              <documentation id = "1">
+              <description>Ultracortex EEG 2024 mira a supportare la ricerca nel campo dell'immaginazione motoria, 
+              	fornendo un dataset più ampio e diversificato che è facilmente integrabile con le tecnologie esistenti. 
+               </description>
+              <link> https://github.com/aski97/Ultracortex-EEG-2024-Dataset</link>
+              <authors>
+                  <author>V.Belardo</author>
+              </authors>
+              <year>2024</year>
+        </documentation>
+        </metadata>
+    </data>	
+   </datas>
+ 
+
+    <applications>
+    	 <!-- Questa sezione include riferimenti agli algoritmi utilizzati -->
+        <application id="1">
+        	<!-- modello centralizzato -->
+            <title>centralized learning</title>
+            <model>CNN</model>
+            <codebase>https://github.com/aski97/federated-learning-clients-server-simulation/blob/main/examples/ultracortex_eeg/centralized_learning/CentralizedLearning.py</codebase>
+            <description>Il link fornito conduce a una repository su GitHub che contiene il codice implementato per l'approccio centralizzato del dataset,
+            </description>
+            <license> Apache-2.0 </license>
+            <author>V.Belardo</author>
+        </application>
+        
+        <application id="2">
+        	  <!-- modello federato -->
+              <title>federated learning</title>
+              <model>fedAvg</model>
+              <fl_type>personal</fl_type>
+	          <codebase>https://github.com/aski97/federated-learning-clients-server-simulation/tree/main/examples/ultracortex_eeg</codebase>
+	          <description> Il link fornito conduce a una repository su GitHub che contiene il codice implementato per l'approccio
+	          	 federato del dataset. In questa repository, è progettata un'architettura client/server per simulare un addestramento federato, 
+	          	 coinvolgendo nodi reali.I client e il server sono implementati in Python e comunicano tramite socket utilizzando il protocollo di trasporto TCP.
+	         </description>
+	         <license> Apache-2.0 </license>
+	         <author>V.Belardo</author>
+        </application>
+ </applications>
+
+
+
+    <executions>
+        <!-- Questa sezione include informazioni suoi parametri utilizzati per l'esecuzioni delle singole applicazioni precedentemente descritte -->
+         <execution id="1">
+         	<data>1</data>
+            <application>1</application>
+            <deployment environment="host">  
+	        	<parameter type="desktop_application">  PyCharm </parameter>
+	            <parameter type="operation_system"> Linux </parameter>
+	            <parameter type="name_system"> LAPTOP-PKUA4UTD</parameter>
+	            <parameter type="release"> 5.15.146.1-microsoft-standard-WSL2 </parameter>
+	            <parameter type="version"> #1 SMP Thu Jan 11 04:09:03 UTC 2024 </parameter>
+                <parameter type="architecture"> x86_64 </parameter>
+                <parameter type="processor"> AMD Ryzen 7 5700U </parameter>
+                <parameter type="ram"> 16 GB </parameter>
+                <parameter type="python_version">3.10.12 </parameter>
+            </deployment>
+            <configuration_model>
+                <parameter name="train">80%</parameter>
+                <parameter name="test">20%</parameter>
+                <parameter name="learning_rate">0.003</parameter>
+                <parameter name="optimizer"> Adam </parameter>
+                <parameter name="loss">crossentropy </parameter>
+                <parameter name="metrics"> 'accuracy' </parameter>
+                <parameter name="batch_size">64 </parameter>
+                <parameter name="epochs">124 </parameter>
+            </configuration_model>
+        </execution>
+        <execution id="2">
+        	<data>1</data>
+            <application>2</application>
+             <deployment environment="host">  
+	        	<parameter type="desktop_application">  PyCharm </parameter>
+	            <parameter type="operation_system"> Linux </parameter>
+	            <parameter type="name_system"> LAPTOP-PKUA4UTD</parameter>
+	            <parameter type="release"> 5.15.146.1-microsoft-standard-WSL2 </parameter>
+	            <parameter type="version"> #1 SMP Thu Jan 11 04:09:03 UTC 2024 </parameter>
+                <parameter type="architecture"> x86_64 </parameter>
+                <parameter type="processor"> AMD Ryzen 7 5700U </parameter>
+                <parameter type="ram"> 16 GB </parameter>
+                <parameter type="python_version">3.10.12 </parameter>
+            </deployment>
+            <configuration_model>
+                <parameter name="train">80%</parameter>
+                <parameter name="test">20%</parameter>
+                <parameter name="learning_rate">0.002</parameter>
+                <parameter name="optimizer"> Adam </parameter>
+                <parameter name="loss"> crossentropy </parameter>
+                <parameter name="metrics"> 'accuracy' </parameter>
+                <parameter name="batch_size"> 32 </parameter>
+                <parameter name="number_of_epochs_for_each_client">50 </parameter>
+                <parameter name="number_of_clients"> 6 </parameter>
+                <parameter name="number_of_round"> 48</parameter>
+            </configuration_model>
+        </execution>
+
+    </executions>
+
+    <evaluations>
+          <!-- Questa sezione include informazioni sui risultati di ogni singola esecuzione -->
+          <evaluation id="1">
+              <execution>1</execution>
+              <kpis>   <!--Key Performance Indicators -->
+                  <kpi type="accuracy" unit="perc"> 68</kpi>
+                  <kpi type="loss" unit="perc"> 72 </kpi>
+                  <kpi type="execution_time" unit="sec"> 36.87 </kpi>
+                  <kpi type="instruction_count"> 51700801 </kpi>
+                  <kpi type="ram_usage" unit="GB"> 4.08 </kpi>
+              </kpis>
+          </evaluation>
+          <evaluation id="2">
+              <execution>2</execution>
+              <kpis>
+                  <kpi type="accuracy" unit="perc"> 61 </kpi>
+                  <kpi type="loss" unit="perc"> 73 </kpi>
+                  <kpi type="average_training_time" unit="sec"> 394 </kpi>
+                  <kpi type="average_instruction_count"> 320502876 </kpi>
+                  <kpi type="average_ram_usage" unit="GB"> 0.75 </kpi>
+              </kpis>
+          </evaluation>
+ </evaluations>
+</body>
+ </document>
