@@ -1,0 +1,457 @@
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema file:/C:/Program%20Files%20(x86)/Exchanger%20XML%20Editor%203.3/types/XML%20Schema/Validation/XMLSchema.xsd">
+   <!-- Definizione degli elementi globali -->
+   <xsd:element name="description" type="xsd:string"/>
+    <xsd:element name="url" type="xsd:anyURI"/>
+    <xsd:element name="data_format" type="xsd:string"/>
+    <xsd:element name="data_size" type="xsd:string"/>
+    <xsd:element name="records" type="xsd:int"/>
+    <xsd:element name="codebase" type="xsd:anyURI"/>
+    <xsd:element name="license" type="xsd:string"/>
+    <xsd:element name="test_set_size" type="xsd:string"/>
+    <xsd:element name="link" type="xsd:anyURI"/>
+    <xsd:element name="year" type="xsd:gYear"/>
+    <xsd:element name="source_code" type="xsd:anyURI"/>
+    <xsd:element name="version_database" type="xsd:string"/>
+    <xsd:element name="download_size" type="xsd:string"/>
+    <xsd:element name="dataset_size" type="xsd:string"/>
+    <xsd:element name="train_set_size" type="xsd:string"/>
+    <xsd:element name="title" type="xsd:string"/>
+    <xsd:element name="id" type="xsd:string"/>
+    <xsd:element name="version" type="xsd:int"/>
+    <xsd:element name="author" type="xsd:string"/>
+    <xsd:element name="date" type="xsd:date"/>
+    <xsd:attribute name="name" type="xsd:string"/>
+    <xsd:attribute name="column" type="xsd:string"/>
+    <xsd:attribute name="type" type="xsd:string"/>
+    <xsd:attribute name="cloud_based" type="xsd:string"/>
+    <xsd:attribute name="operation_sistem" type="xsd:string"/>
+    <xsd:attribute name="name_system" type="xsd:string"/>
+    <xsd:attribute name="release" type="xsd:string"/>
+    <xsd:attribute name="version" type="xsd:string"/>
+    <xsd:attribute name="architecture" type="xsd:string"/>
+     <xsd:attribute name="ram" type="xsd:string"/>
+    <xsd:attribute name="processor" type="xsd:string"/>
+    <xsd:attribute name="python_version" type="xsd:string"/>
+	<xsd:attribute name="train" type="xsd:string"/>
+	<xsd:attribute name="test" type="xsd:string"/>
+	<xsd:attribute name="learning_rate" type="xsd:string"/>
+    <xsd:attribute name="optimizer" type="xsd:string"/>
+    <xsd:attribute name="loss" type="xsd:string"/>
+    <xsd:attribute name="metrics" type="xsd:string"/>
+    <xsd:attribute name="batch_size" type="xsd:int"/>
+    <xsd:attribute name="epochs" type="xsd:int"/>
+    <xsd:attribute name="unit" type="xsd:string"/>
+    <xsd:attribute name="id" type="xsd:int"/>
+ 	<xsd:attribute name="initialization_of_weights_and_bias" type="xsd:int"/>
+ 	<xsd:attribute name="number_of_epochs_for_each_client" type="xsd:int"/>
+ 	<xsd:attribute name="number_of_round" type="xsd:int"/>
+	<xsd:attribute name="number_of_clients" type="xsd:int"/>
+ 	
+
+        <!-- Definizione dell'elemento authors -->
+    <xsd:element name="authors">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="author" minOccurs="1" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>      
+     
+    
+    
+ <!-- Definizione dell'elemento parameter -->
+ 
+    <xsd:element name="parameter">
+        <xsd:complexType mixed="true">
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string">
+                    <xsd:attribute ref="name"/>
+                    <xsd:attribute ref="type"/>
+                </xsd:extension>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Definizione dell'elemento metadata -->
+<xsd:element name="metadata">
+    <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element ref="parameter" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element ref="documentation" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:element>
+ 
+
+    <!-- Definizione dell'elemento documentation -->
+              <xsd:element name="documentation">
+                <xsd:complexType>
+                    <xsd:all>
+                    <xsd:element ref="test_set_size" minOccurs="0"/>
+		            <xsd:element ref="description" minOccurs="0"/>
+		            <xsd:element ref="link" minOccurs="0"/>
+		            <xsd:element ref="authors" minOccurs="0"/>
+		            <xsd:element ref="year" minOccurs="0"/>
+		            <xsd:element ref="source_code" minOccurs="0"/>
+		            <xsd:element ref="version_database" minOccurs="0"/>
+		            <xsd:element ref="download_size" minOccurs="0"/>
+		            <xsd:element ref="dataset_size" minOccurs="0"/>
+		            <xsd:element ref="train_set_size" minOccurs="0"/>
+                    </xsd:all>
+                    <xsd:attribute ref="id"/>
+                </xsd:complexType>
+            </xsd:element>
+
+
+    <!-- Definizione dell'elemento group -->
+    <xsd:element name="group">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="url" maxOccurs="1"/>
+                <xsd:element ref="data_size" maxOccurs="1"/>
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Definizione dell'elemento dataset -->
+    <xsd:element name="dataset">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="group" maxOccurs="unbounded"/>
+                <xsd:element ref="records"/>
+                <xsd:element ref="data_format"/>
+                <xsd:element ref="metadata" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+
+    <!-- Definizione dell'elemento datasource -->
+    <xsd:element name="datasource">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="dataset" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+        
+    
+    
+   <!-- Definizione dell'elemento data -->
+    <xsd:element name="data">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="description"/>
+                <xsd:element ref="datasource"/>
+                <xsd:element ref="metadata"/>
+            </xsd:sequence>
+            <xsd:attribute ref="id"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+    
+     <!-- Definizione dell'elemento datas -->
+    
+            <xsd:element name="datas">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="data" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+      
+ 
+
+    
+    <!-- Definizione dell'elemento application -->
+    <xsd:element name="application">
+        <xsd:complexType>
+            <xsd:sequence>  
+                <xsd:element name="title">  
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="federated learning"/>
+                        <xsd:enumeration value="centralized learning"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+                </xsd:element>            
+                <xsd:element name="model" minOccurs="1">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="CNN"/>
+                        <xsd:enumeration value="FNN"/>
+			            <xsd:enumeration value="GAN"/>
+			            <xsd:enumeration value="RNN"/>
+			            <xsd:enumeration value="LSTM"/>
+			            <xsd:enumeration value="fedAvg"/>
+                        <xsd:enumeration value="fedMiddleAvg"/>
+                        <xsd:enumeration value="FedOpt"/>
+			            <xsd:enumeration value="FedAvgMomentum"/>
+			            <xsd:enumeration value="FedProx"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+                </xsd:element>                       
+                <xsd:element name="fl_type" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="personal"/>
+                        <xsd:enumeration value="aggregate"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+                </xsd:element>
+                <xsd:element ref="codebase"/>
+                <xsd:element ref="description"/>
+                <xsd:element ref="license"/>
+                <xsd:element ref="author"/>
+            </xsd:sequence>
+            <xsd:attribute ref="id"/>
+        </xsd:complexType>
+    </xsd:element>
+
+
+
+    <!-- Definizione dell'elemento applications -->
+    
+            <xsd:element name="applications">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="application" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+    
+    
+    <!-- Definizione dell'elemento deployment -->
+    
+   <xsd:element name="deployment">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="parameter" maxOccurs="unbounded">
+                    <xsd:complexType mixed="true">
+                        <xsd:simpleContent>
+                            <xsd:extension base="xsd:string">
+
+                                <!-- Attributo 'type' con enumerazioni specifiche, facoltativo -->
+                                <xsd:attribute name="type">
+                                    <xsd:simpleType>
+                                        <xsd:restriction base="xsd:string">
+                                            <xsd:enumeration value="cloud_based"/>
+                                            <xsd:enumeration value="desktop_application"/>
+                                            <xsd:enumeration value="operation_system"/>
+                                             <xsd:enumeration value="name_system"/>
+                                            <xsd:enumeration value="release"/>
+                                            <xsd:enumeration value="version"/>
+                                            <xsd:enumeration value="architecture"/>
+                                            <xsd:enumeration value="processor"/> 
+                                            <xsd:enumeration value="ram"/>
+                                            <xsd:enumeration value="python_version"/>
+                                        </xsd:restriction>
+                                    </xsd:simpleType>
+                                </xsd:attribute>
+                            </xsd:extension>
+                        </xsd:simpleContent>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+            <!-- Attributo 'environment' con enumerazioni specifiche -->
+            <xsd:attribute name="environment">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="host"/>
+                        <xsd:enumeration value="cloud"/>
+                        <xsd:enumeration value="edge"/>
+                        <xsd:enumeration value="fog"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+
+<!-- Definizione dell'elemento configuration_model -->
+ <xsd:element name="configuration_model">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="parameter" maxOccurs="unbounded">
+                    <xsd:complexType mixed="true">
+                        <xsd:simpleContent>
+                            <xsd:extension base="xsd:string">
+                                <xsd:attribute name="name" use="required">
+                                    <xsd:simpleType>
+                                        <xsd:restriction base="xsd:string">
+                                            <!-- Valori specifici permessi per l'attributo name nel contesto di configuration_model -->
+                                            <xsd:enumeration value="train"/>
+                                            <xsd:enumeration value="test"/>
+                                            <xsd:enumeration value="learning_rate"/>
+                                            <xsd:enumeration value="optimizer"/>
+								            <xsd:enumeration value="loss"/>
+								            <xsd:enumeration value="metrics"/>
+								            <xsd:enumeration value="batch_size"/>
+								            <xsd:enumeration value="epochs"/>
+								            <xsd:enumeration value="initialization_of_weights_and_bias"/>
+								            <xsd:enumeration value="number_of_epochs_for_each_client"/>
+								            <xsd:enumeration value="number_of_clients"/>
+								            <xsd:enumeration value="number_of_round"/>
+                                               				
+                                        </xsd:restriction>
+                                    </xsd:simpleType>
+                                </xsd:attribute>
+                                <xsd:attribute name="type" type="xsd:string"/>
+                            </xsd:extension>
+                        </xsd:simpleContent>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+
+
+
+
+
+
+
+
+    <!-- Definizione dell'elemento execution -->
+   <xsd:element name="execution">
+        <xsd:complexType>
+            <xsd:sequence>
+            	 <xsd:element name="data" type="xsd:string"/>
+                 <xsd:element name="application" type="xsd:string"/>
+                <xsd:element ref="deployment"/>
+                <xsd:element ref="configuration_model"/>
+            </xsd:sequence>
+            <xsd:attribute ref="id"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Definizione dell'elemento executions -->
+        <xsd:element name="executions">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="execution" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+    
+
+    <!-- Definizione dell'elemento kpi -->
+    
+    <!-- Definizione dell’elemento kpi -->
+<!-- Definizione dell'elemento kpi -->
+<xsd:element name="kpi">
+    <xsd:complexType>
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <!-- Attributo 'type' opzionale -->
+                <xsd:attribute name="type">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:enumeration value="accuracy"/>
+                            <xsd:enumeration value="loss"/>
+                            <xsd:enumeration value="execution_time"/>
+                            <xsd:enumeration value="instruction_count"/>
+                            <xsd:enumeration value="ram_usage"/>
+                            <xsd:enumeration value="average_training_time"/>
+                            <xsd:enumeration value="average_execution_time"/>
+                            <xsd:enumeration value="average_instruction_count"/>
+                            <xsd:enumeration value="average_ram_usage"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+
+                <!-- Attributo 'unit' opzionale -->
+                <xsd:attribute name="unit">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:enumeration value="perc"/> <!-- Percentuale -->
+                            <xsd:enumeration value="sec"/>  <!-- Secondi -->
+                            <xsd:enumeration value="GB"/>   <!-- Gigabyte -->
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:element>
+
+
+
+    <!-- Definizione dell'elemento kpis -->
+    <xsd:element name="kpis">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="kpi" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <!-- Definizione dell'elemento evaluation -->
+    <xsd:element name="evaluation">
+        <xsd:complexType>
+            <xsd:sequence>
+				<xsd:element name="execution" type="xsd:string"/>
+                <xsd:element ref="kpis"/>
+            </xsd:sequence>
+            <xsd:attribute ref="id"/>
+        </xsd:complexType>
+    </xsd:element>
+    
+
+    <!-- Definizione dell'elemento evaluations -->
+    <xsd:element name="evaluations">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="evaluation" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Definizione dell'elemento body -->
+    <xsd:element name="body">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="datas"/>
+                <xsd:element ref="applications"/>
+                <xsd:element ref="executions"/>
+                <xsd:element ref="evaluations"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    
+
+    
+    <!-- Definizione dell'elemento header -->
+              <xsd:element name="header">
+                <xsd:complexType>
+                    <xsd:all>
+                    <xsd:element ref="title" minOccurs="1"/>
+		            <xsd:element ref="description" minOccurs="0"/>
+		            <xsd:element ref="id" minOccurs="1"/>
+		             <xsd:element name="date" minOccurs="1"/>
+		            <xsd:element ref="version" minOccurs="1"/>
+		            <xsd:element ref="authors" minOccurs="1"/>
+		            <xsd:element ref="url" minOccurs="1"/>
+                    </xsd:all>
+                </xsd:complexType>
+            </xsd:element>   
+    
+
+    <!-- Definizione dell'elemento document -->
+    <xsd:element name="document">
+        <xsd:complexType>
+            <xsd:sequence>
+            	<xsd:element ref="header"/>
+                <xsd:element ref="body"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
