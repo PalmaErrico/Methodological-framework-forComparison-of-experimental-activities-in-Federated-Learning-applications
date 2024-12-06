@@ -1,1 +1,168 @@
+<?xml version="1.0"?>
 
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:/C:/Users/Palma/Desktop/Exchanger/template.xsd">
+ <header>
+ <!-- Questa sezione include metadati generici  -->
+    <title>FL BNCI 2014-001</title>
+    <description>Viene creato uno schema XML che definisce un'architettura stratificata per rappresentare in modo coerente gli aspetti fondamentali dell'esperimento e dei dati utilizzati.</description>
+    <id> 1416a84d-b332-4436-9655-90a1680251fc</id>
+    <date>20/07/2024</date>
+    <version>0.1</version>
+    <authors>
+          <author>Palma Errico</author>
+    </authors>
+    <url>https://github.com/PalmaErrico/Methodological-framework-forComparison-of-experimental-activities-in-Federated-Learning-applications/blob/main/template_BNCI_2014-001.xml</url>
+  </header>
+<body>
+	<!-- Questa sezione include metadati del progetto -->
+  <datas>		
+   	
+  		
+    <data id ="1">
+    <!-- Questa sezione include informazioni sul dataset utilizzato -->
+	<description> In questo dataset sono presenti dati EEG, relativi a due specifici movimenti (movimento della mano destra, movimento della mano sinistra) divisi in 9 cartelle, ognuna fa riferimento ad un soggetto diverso.
+      </description>
+      <datasource>
+            <dataset name="BNCI_2014_001_inputs">
+                  <group name="training_test_set">
+                      <url>https://github.com/aski97/federated-learning-clients-server-simulation/tree/main/examples/BNCI2014_001/dataset</url>
+                      <data_size> 5.10 MB</data_size>
+                 </group>
+                <records>2592</records>
+                <data_format> npy </data_format>
+                <metadata>
+                	<parameter name="label_folder"> From 1 to 9 </parameter>
+                	<parameter name="label_subfolder"> (data.npy) or (labels.npy) </parameter>
+                	<parameter name="label_subfolder_value"> (From -0.65 to 3.87) or (right_hand or left_hand)</parameter>
+                    <parameter name="classes">2</parameter>
+                </metadata>
+          </dataset>
+      </datasource>
+ 	  <metadata>
+              <!-- Questa sezione include una documentazione del dataset fornita dal web-->
+              <documentation id = "1">
+              <description>Il dataset BNCI 2014_001 è stato creato con BNCI Horizon 2020 e comprende dati provenienti da nove soggetti sani. Durante gli esperimenti, i soggetti hanno immaginato il movimento della mano sinistra, della mano destra, di entrambi i piedi e della lingua, con ogni soggetto partecipante a due sessioni separate. 
+               </description>
+              <link> https://neurotechx.github.io/moabb/generated/moabb.datasets.BNCI2014_001.html#moabb.datasets.BNCI2014_001 </link>
+              <authors>
+                  <author>Aristimunha at all </author>
+              </authors>
+              <year>2014</year>
+        </documentation>
+        </metadata>
+    </data>	
+   </datas>
+ 
+
+    <applications>
+    	 <!-- Questa sezione include riferimenti agli algoritmi utilizzati -->
+        <application id="1">
+        	<!-- modello centralizzato -->
+            <title>centralized learning</title>
+            <model>CNN</model>
+            <codebase>https://github.com/aski97/federated-learning-clients-server-simulation/blob/main/examples/BNCI2014_001/centralized_learning/CentralizedLearning.py</codebase>
+            <description>Il link fornito conduce a una repository su GitHub che contiene il codice implementato per l'approccio centralizzato del dataset
+            </description>
+            <license> Apache-2.0 </license>
+            <author>V.Belardo</author>
+        </application>
+        
+        <application id="2">
+        	  <!-- modello federato -->
+              <title>federated learning</title>
+              <model>fedAdam</model>
+              <fl_type>personal</fl_type>
+	          <codebase>https://github.com/aski97/federated-learning-clients-server-simulation/tree/main/examples/BNCI2014_001</codebase>
+	          <description> Il link fornito conduce a una repository su GitHub che contiene il codice implementato per l'approccio
+	          	 federato del dataset. In questa repository, è progettata un'architettura client/server per simulare un addestramento federato, 
+	          	 coinvolgendo nodi reali.I client e il server sono implementati in Python e comunicano tramite socket utilizzando il protocollo di trasporto TCP.
+	         </description>
+	         <license> Apache-2.0 </license>
+	         <author>V.Belardo</author>
+        </application>
+ </applications>
+
+
+
+    <executions>
+        <!-- Questa sezione include informazioni suoi parametri utilizzati per l'esecuzioni delle singole applicazioni precedentemente descritte -->
+         <execution id="1">
+         	<data>1</data>
+            <application>1</application>
+            <deployment environment="host">  
+	        	<parameter type="desktop_application">  PyCharm </parameter>
+	            <parameter type="operation_system"> Linux </parameter>
+	            <parameter type="name_system"> LAPTOP-PKUA4UTD</parameter>
+	            <parameter type="release"> 5.15.146.1-microsoft-standard-WSL2 </parameter>
+	            <parameter type="version"> #1 SMP Thu Jan 11 04:09:03 UTC 2024 </parameter>
+                <parameter type="architecture"> x86_64 </parameter>
+                <parameter type="processor"> AMD Ryzen 7 5700U </parameter>
+                <parameter type="ram"> 16 GB </parameter>
+                <parameter type="python_version">3.10.12 </parameter>
+            </deployment>
+            <configuration_model>
+                <parameter name="train">75%</parameter>
+                <parameter name="test">25%</parameter>
+                <parameter name="learning_rate">0.002</parameter>
+                <parameter name="optimizer"> Adam </parameter>
+                <parameter name="loss">crossentropy </parameter>
+                <parameter name="metrics"> 'accuracy' </parameter>
+                <parameter name="batch_size">32 </parameter>
+                <parameter name="epochs">20 </parameter>
+            </configuration_model>
+        </execution>
+        <execution id="2">
+        	<data>1</data>
+            <application>2</application>
+             <deployment environment="host">  
+	        	<parameter type="desktop_application">  PyCharm </parameter>
+	            <parameter type="operation_system"> Linux </parameter>
+	            <parameter type="name_system"> LAPTOP-PKUA4UTD</parameter>
+	            <parameter type="release"> 5.15.146.1-microsoft-standard-WSL2 </parameter>
+	            <parameter type="version"> #1 SMP Thu Jan 11 04:09:03 UTC 2024 </parameter>
+                <parameter type="architecture"> x86_64 </parameter>
+                <parameter type="processor"> AMD Ryzen 7 5700U </parameter>
+                <parameter type="ram"> 16 GB </parameter>
+                <parameter type="python_version">3.10.12 </parameter>
+            </deployment>
+            <configuration_model>
+                <parameter name="train">75%</parameter>
+                <parameter name="test">25%</parameter>
+                <parameter name="learning_rate">0.002</parameter>
+                <parameter name="optimizer"> Adam </parameter>
+                <parameter name="loss"> crossentropy </parameter>
+                <parameter name="metrics"> 'accuracy' </parameter>
+                <parameter name="batch_size"> 32 </parameter>
+                <parameter name="number_of_epochs_for_each_client">20</parameter>
+                <parameter name="number_of_clients"> 9 </parameter>
+                <parameter name="number_of_round"> 32</parameter>
+            </configuration_model>
+        </execution>
+
+    </executions>
+
+    <evaluations>
+          <!-- Questa sezione include informazioni sui risultati di ogni singola esecuzione -->
+          <evaluation id="1">
+              <execution>1</execution>
+              <kpis>   <!--Key Performance Indicators -->
+                  <kpi type="accuracy" unit="perc"> 75</kpi>
+                  <kpi type="loss" unit="perc"> 51 </kpi>
+                  <kpi type="execution_time" unit="sec"> 37.88 </kpi>
+                  <kpi type="instruction_count"> 37661555 </kpi>
+                  <kpi type="ram_usage" unit="GB"> 3.97 </kpi>
+              </kpis>
+          </evaluation>
+          <evaluation id="2">
+              <execution>2</execution>
+              <kpis>
+                  <kpi type="accuracy" unit="perc"> 71 </kpi>
+                  <kpi type="loss" unit="perc"> 54 </kpi>
+                  <kpi type="average_training_time" unit="sec"> 535 </kpi>
+                  <kpi type="average_instruction_count"> 109457000 </kpi>
+                  <kpi type="average_ram_usage" unit="GB"> 0.73 </kpi>
+              </kpis>
+          </evaluation>
+ </evaluations>
+</body>
+ </document>
