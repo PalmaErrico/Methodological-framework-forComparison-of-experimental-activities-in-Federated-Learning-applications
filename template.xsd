@@ -188,10 +188,12 @@
 			            <xsd:enumeration value="RNN"/>
 			            <xsd:enumeration value="LSTM"/>
 			            <xsd:enumeration value="fedAvg"/>
-                        <xsd:enumeration value="fedMiddleAvg"/>
-                        <xsd:enumeration value="FedOpt"/>
+                       		    <xsd:enumeration value="fedMiddleAvg"/>
+                                    <xsd:enumeration value="FedOpt"/>
 			            <xsd:enumeration value="FedAvgMomentum"/>
 			            <xsd:enumeration value="FedProx"/>
+			            <xsd:enumeration value="fedAdam"/>
+			   
                     </xsd:restriction>
                 </xsd:simpleType>
                 </xsd:element>                       
