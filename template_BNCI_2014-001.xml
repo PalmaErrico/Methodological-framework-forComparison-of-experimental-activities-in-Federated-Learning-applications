@@ -45,7 +45,12 @@
                </description>
               <link> https://neurotechx.github.io/moabb/generated/moabb.datasets.BNCI2014_001.html#moabb.datasets.BNCI2014_001 </link>
               <authors>
-                  <author>Aristimunha at all </author>
+                  <author> Sylvain Chevallier </author>
+                  <author> Bruno Aristimunha </author>
+                  <author> Igor Carrara</author>
+                  <author> Pierre Guetschel</author>
+                  <author> Alexander Barachant</author>
+                  <author> Vinay Jayaram </author>
               </authors>
               <year>2014</year>
         </documentation>
