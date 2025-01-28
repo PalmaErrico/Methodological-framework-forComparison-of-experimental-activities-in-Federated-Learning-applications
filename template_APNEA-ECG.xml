@@ -1,1 +1,166 @@
+<?xml version="1.0"?>
 
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file:/C:/Users/Palma/Desktop/Exchanger/template.xsd">
+ <header>
+ <!-- Questa sezione include metadati generici  -->
+    <title>APNEA-ECG</title>
+    <description>Viene creato uno schema XML che definisce un'architettura stratificata per rappresentare in modo coerente gli aspetti fondamentali dell'esperimento e dei dati utilizzati.</description>
+    <id> 02f4e6bd-89d2-4f12-b345-0d8b3c3a0e57</id>
+    <date>19/11/2024</date>
+    <version>0.1</version>
+    <authors>
+          <author>Palma Errico</author>
+    </authors>
+    <url>https://github.com/PalmaErrico/Methodological-framework-forComparison-of-experimental-activities-in-Federated-Learning-applications/blob/main/template_APNEA-ECG.xml</url>
+  </header>
+<body>
+	<!-- Questa sezione include metadati del progetto -->
+  <datas>		
+   	
+  		
+    <data id ="1">
+    <!-- Questa sezione include informazioni sul dataset utilizzato -->
+	<description> In questo dataset sono presenti 70 registrazioni che includono segnali ECG continui, annotazioni di apnea basate sulla respirazione, e annotazioni QRS automatizzate.
+      </description>
+      <datasource>
+            <dataset name="BNCI_2014_001_inputs">
+                  <group name="training_test_set">
+                      <url>https://www.kaggle.com/datasets/paulopinheiro/the-apnea-ecg-database-v100?resource=download</url>
+                      <data_size> 315 MB</data_size>
+                 </group>
+                <records>70</records>
+                <data_format> (.dat,.apn)</data_format>
+                <metadata>
+                	<parameter name="label_file"> From a01 to a020, From b01 to b05, From c01 to c10, From x01 to x35 </parameter>
+                	<parameter name="extension_dat"> ECG signals  </parameter>
+                	<parameter name="extension_apn"> A or N values  </parameter>
+                	<parameter name=" ECG_signal_digitized"> 100 Hz</parameter>
+                    <parameter name="ECG_resolution"> 12 bit </parameter>
+                </metadata>
+          </dataset>
+      </datasource>
+ 	  <metadata>
+              <!-- Questa sezione include una documentazione del dataset fornita dal web-->
+              <documentation id = "1">
+              <description>Il sito include dettagli sulle registrazioni e i soggetti. Per ogni registrazione, il numero totale di segmenti di un minuto, 
+              	           minuti con e senza apnea (comprese le ipopnee) e i caratteri dei soggetti. Sono disponibili caratteristiche quali età, sesso, altezza, peso e indici (AI, HI e AHI) 
+               </description>
+              <link>https://physionet.org/physiobank/database/apnea-ecg/additional-information.txt </link>
+              <authors>
+                  <author>Dr. Thomas Penzel </author>
+              </authors>
+              <year>2000</year>
+        </documentation>
+        </metadata>
+    </data>	
+   </datas>
+ 
+
+    <applications>
+    	 <!-- Questa sezione include riferimenti agli algoritmi utilizzati -->
+        <application id="1">
+        	<!-- modello centralizzato -->
+            <title>centralized learning</title>
+            <model>CNN</model>
+            <codebase>Nan</codebase>
+            <description>Il link fornito conduce a una repository su .......... che contiene il codice implementato per l'approccio centralizzato del dataset
+            </description>
+            <license> Apache-2.0 </license>
+            <author>Nan</author>
+        </application>
+        
+        <application id="2">
+        	  <!-- modello federato -->
+              <title>federated learning</title>
+              <model>fedAvg</model>
+              <fl_type>personal</fl_type>
+	          <codebase>Nan</codebase>
+	          <description> Il link fornito conduce a una repository su ...... che contiene il codice implementato per l'approccio
+	          	 federato del dataset. In questa repository, è progettata un'architettura client/server per simulare un addestramento federato, 
+	          	 coinvolgendo nodi reali.I client e il server sono implementati in Pytorch.
+	         </description>
+	         <license> Apache-2.0 </license>
+	         <author>Nan</author>
+        </application>
+ </applications>
+
+
+
+    <executions>
+        <!-- Questa sezione include informazioni suoi parametri utilizzati per l'esecuzioni delle singole applicazioni precedentemente descritte -->
+         <execution id="1">
+         	<data>1</data>
+            <application>1</application>
+            <deployment environment="host">  
+	        	<parameter type="desktop_application">  ......... </parameter>
+	            <parameter type="operation_system"> Linux </parameter>
+	            <parameter type="name_system"> Ubuntu </parameter>
+	            <parameter type="release"> 22.04.5 LTS </parameter>
+                <parameter type="processor">  Intel(R)Xeon(R) W-2245, 3.90 GHz </parameter>
+                <parameter type="ram"> 125 Gi </parameter>
+                <parameter type="python_version">3.11 </parameter>
+            </deployment>
+            <configuration_model>
+                <parameter name="train">80%</parameter>
+                <parameter name="test">20%</parameter>
+                <parameter name="learning_rate">0.001</parameter>
+                <parameter name="optimizer"> Adam </parameter>
+                <parameter name="loss">MSE loss </parameter>
+                <parameter name="metrics"> 'accuracy' </parameter>
+                <parameter name="batch_size">64 </parameter>
+                <parameter name="epochs">50 </parameter>
+            </configuration_model>
+        </execution>
+        <execution id="2">
+        	<data>1</data>
+            <application>2</application>
+             <deployment environment="host">  
+	        	<parameter type="desktop_application">  ......... </parameter>
+	            <parameter type="operation_system"> Linux </parameter>
+	            <parameter type="name_system"> Ubuntu </parameter>
+	            <parameter type="release"> 22.04.5 LTS </parameter>
+                <parameter type="processor">  Intel(R)Xeon(R) W-2245, 3.90 GHz </parameter>
+                <parameter type="ram"> 125 Gi </parameter>
+                <parameter type="python_version">3.11 </parameter>
+            </deployment>
+            <configuration_model>
+                <parameter name="train">80%</parameter>
+                <parameter name="test">20%</parameter>
+                <parameter name="learning_rate">0.1</parameter>
+                <parameter name="optimizer"> SGD </parameter>
+                <parameter name="loss"> MSE Loss </parameter>
+                <parameter name="metrics"> 'accuracy' </parameter>
+                <parameter name="batch_size"> 32 </parameter>
+                <parameter name="number_of_epochs_for_each_client">15</parameter>
+                <parameter name="number_of_clients"> 10 </parameter>
+                <parameter name="number_of_round"> 10 </parameter>
+            </configuration_model>
+        </execution>
+
+    </executions>
+
+    <evaluations>
+          <!-- Questa sezione include informazioni sui risultati di ogni singola esecuzione -->
+          <evaluation id="1">
+              <execution>1</execution>
+              <kpis>   <!--Key Performance Indicators in fase di test -->
+                  <kpi type="accuracy" unit="perc"> 79</kpi>
+                  <kpi type="loss" unit="perc"> 2 </kpi>
+                  <kpi type="execution_time" unit="sec"> 204.76 </kpi>
+                  <kpi type="instruction_count"> 1.7e+08 </kpi>
+                  <kpi type="ram_usage" unit="GB"> 1.95 </kpi><!--in fase di training-->
+              </kpis>
+          </evaluation>
+          <evaluation id="2">
+              <execution>2</execution>
+              <kpis> <!--Key Performance Indicators in fase di test -->
+                  <kpi type="accuracy" unit="perc"> 77 </kpi>
+                  <kpi type="loss" unit="perc"> 1 </kpi>
+                  <kpi type="average_execution_time" unit="sec"> 5.89 </kpi>
+                  <kpi type="average_instruction_count"> 2.52e+08 </kpi>
+                  <kpi type="average_ram_usage" unit="GB"> 3.50 </kpi> <!--in fase di training-->
+              </kpis>
+          </evaluation>
+ </evaluations>
+</body>
+ </document>
