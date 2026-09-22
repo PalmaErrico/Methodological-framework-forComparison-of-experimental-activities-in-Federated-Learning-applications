@@ -120,6 +120,19 @@
 	         <license> Apache-2.0 </license>
 	         <author>V.Belardo</author>
         </application>
+		        <application id="4">
+        	  <!-- modello federato -->
+              <title>federated learning</title>
+              <model>fedAvgMomentum</model>
+              <fl_type>personal</fl_type>
+	          <codebase>https://github.com/aski97/federated-learning-clients-server-simulation/tree/main/examples/mnist</codebase>
+	          <description> Il link fornito conduce a una repository su GitHub che contiene il codice implementato per l'approccio
+	          	 federato del dataset EMNIST. In questa repository, è progettata un'architettura client/server per simulare un addestramento federato, 
+	          	 coinvolgendo nodi reali.I client e il server sono implementati in Python e comunicano tramite socket utilizzando il protocollo di trasporto TCP.
+	         </description>
+	         <license> Apache-2.0 </license>
+	         <author>V.Belardo</author>
+        </application>
     </applications>
 
 
@@ -205,6 +218,33 @@
                 <parameter name="number_of_round"> 64 </parameter>
             </configuration_model>
         </execution>
+		 <execution id="4">
+        	<data>2</data>
+            <application>4</application>
+             <deployment environment="host">  
+	        	<parameter type="desktop_application">  PyCharm </parameter>
+	            <parameter type="operation_system"> Linux </parameter>
+	            <parameter type="name_system"> LAPTOP-PKUA4UTD</parameter>
+	            <parameter type="release"> 5.15.146.1-microsoft-standard-WSL2 </parameter>
+	            <parameter type="version"> #1 SMP Thu Jan 11 04:09:03 UTC 2024 </parameter>
+                <parameter type="architecture"> x86_64 </parameter>
+                <parameter type="processor"> AMD Ryzen 7 5700U </parameter>
+                <parameter type="ram"> 16 GB </parameter>
+                <parameter type="python_version">3.10.12 </parameter>
+            </deployment>
+            <configuration_model>
+                <parameter name="train">89.3%</parameter>
+                <parameter name="test">10.7%</parameter>
+                <parameter name="learning_rate">0.002</parameter>
+                <parameter name="optimizer"> Adam </parameter>
+                <parameter name="loss"> crossentropy </parameter>
+                <parameter name="metrics"> 'accuracy' </parameter>
+                <parameter name="batch_size"> 32 </parameter>
+                <parameter name="number_of_epochs_for_each_client">40 </parameter>
+                <parameter name="number_of_clients"> 10 </parameter>
+                <parameter name="number_of_round"> 64 </parameter>
+            </configuration_model>
+        </execution>
     </executions>
 
     <evaluations>
@@ -235,6 +275,14 @@
               <kpis>
                   <kpi type="accuracy" unit="perc"> 88 </kpi>
                   <kpi type="loss" unit="perc"> 33 </kpi>
+              </kpis>
+          </evaluation>
+		
+		  <evaluation id="4">
+              <execution>3</execution>
+              <kpis>
+                  <kpi type="accuracy" unit="perc"> 92 </kpi>
+                  <kpi type="loss" unit="perc"> 62 </kpi>
               </kpis>
           </evaluation>
     </evaluations>
