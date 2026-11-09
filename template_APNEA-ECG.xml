@@ -23,7 +23,7 @@
 	<description> In questo dataset sono presenti 70 registrazioni che includono segnali ECG continui, annotazioni di apnea basate sulla respirazione, e annotazioni QRS automatizzate.
       </description>
       <datasource>
-            <dataset name="BNCI_2014_001_inputs">
+            <dataset name="apnea-ecg">
                   <group name="training_test_set">
                       <url>https://www.kaggle.com/datasets/paulopinheiro/the-apnea-ecg-database-v100?resource=download</url>
                       <data_size> 315 MB</data_size>
